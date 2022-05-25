@@ -3,7 +3,8 @@ import items from "../components/items";
 
 function Card() {
 
-   const [textValue, setTextValue] = useState('');
+  //  const [textValue, setTextValue] = useState('');
+  const [textValue, setTextValue] = useState('');
 
   const changeTextValue = () => {
     const itemsNumber = items.length;
