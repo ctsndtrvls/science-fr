@@ -8,10 +8,26 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.waves-effect {
-  padding-left: 24px !important;
+.container-lang {
+  display: flex;
+  width: 746px;
+  justify-content: right;
+  margin: 5px;
+}
+
+.container-tags {
+  display: flex;
+  width: 746px;
+  justify-content: space-between;
+  margin: -10px 11.25px;
+}
+
+.container-reset {
+  display: flex;
+  width: 746px;
+  justify-content: center;
+  margin-top: 30px;
 }
