@@ -3,12 +3,11 @@ import React from 'react'
 function LanguageButtons(props) {
     return (
         <div className="container-lang">
-        { window.localStorage.lang }
             <a 
                 className="waves-effect waves-light purple lighten-3 btn-small" 
                 onClick={() => props.changeLang('ru')}
                 style={{
-                    fontWeight: window.props.lang == 'ru' ? 'bold' : 'regular'
+                    fontWeight: props.lang == 'ru' ? 'bold' : 'regular'
                 }}
             >
                 ru
@@ -17,7 +16,7 @@ function LanguageButtons(props) {
                 className="waves-effect waves-light purple lighten-3 btn-small" 
                 onClick={() => props.changeLang('en')}
                 style={{
-                    fontWeight: window.props.lang == 'en' ? 'bold' : 'regular'
+                    fontWeight: props.lang == 'en' ? 'bold' : 'regular'
                 }}
             >
                 en
