@@ -7,7 +7,7 @@ function LanguageButtons(props) {
                 className="waves-effect waves-light purple lighten-3 btn-small" 
                 onClick={() => props.changeLang('ru')}
                 style={{
-                    fontWeight: props.lang == 'ru' ? 'bold' : 'regular'
+                    fontWeight: props.currentLang == 'ru' ? 'bold' : ''
                 }}
             >
                 ru
@@ -16,7 +16,7 @@ function LanguageButtons(props) {
                 className="waves-effect waves-light purple lighten-3 btn-small" 
                 onClick={() => props.changeLang('en')}
                 style={{
-                    fontWeight: props.lang == 'en' ? 'bold' : 'regular'
+                    fontWeight: props.currentLang == 'en' ? 'bold' : ''
                 }}
             >
                 en
