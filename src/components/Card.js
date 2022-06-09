@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useEffect, useState} from "react";
 import items from "./items";
 import Tags from './Tags';
 import LanguageButtons from "./LanguageButtons";
@@ -11,6 +11,57 @@ function Card() {
   const [currentItemIndex, setcurrentItemIndex] = useState(0) 
   const [currentLang, setCurrentLang] = useState(window.localStorage.lang || 'ru')
   const [currentTag, setCurrentTag] = useState('')
+  const [imageURL, setImageURL] = useState('')
+
+  const getUserslist = () => {
+    fetch(`https://dummyapi.io/data/v1/user?limit=10`, {
+      headers: {
+        "app-id": "629c6413720007a945062d5e"
+      }
+     })
+  .then((res) => {
+    return res.json();
+  })
+  .then((data) => {
+    console.log(data);
+    // const imageURL = data.results[0].urls.regular
+    // console.log(imageURL)
+    // setImageURL(data.results[0].urls.regular)
+    // const imageURL = data.results[0].urls.regular
+    console.log(imageURL)
+    setImageURL(data.data[1].picture)
+  });
+  }
+
+  const getUserProfile = (id) => {
+    fetch(`https://dummyapi.io/data/v1/user/${id}`, {
+      headers: {
+        "app-id": "629c6413720007a945062d5e"
+      }
+     })
+  .then((res) => {
+    return res.json();
+  })
+  .then((data) => {
+    console.log(data);
+    // const imageURL = data.results[0].urls.regular
+    // console.log(imageURL)
+    // setImageURL(data.results[0].urls.regular)
+    // const imageURL = data.results[0].urls.regular
+    console.log(imageURL)
+    setImageURL(data.data[1].picture)
+  });
+  }
+
+  useEffect(() => {
+    fetch('')
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      setImageURL(data.data[1].picture)
+    })
+  }, [currentLang, currentItemIndex, currentTag])
 
   const changeItem = () => {
     const newItemsIndex = generateRandomIndex(filteredItemsByTag(currentTag).length)
@@ -43,6 +94,7 @@ function Card() {
     setCurrentLang(lang)
   }
 
+  const currentItem = filteredItemsByTag(currentTag)[currentItemIndex].content[currentLang]
 
     return (
       <div>
@@ -53,7 +105,8 @@ function Card() {
     <div className="col s12 m6">
       <div className="card pink lighten-1">
         <div className="card-content white-text">
-          <p>{ filteredItemsByTag(currentTag)[currentItemIndex].content[currentLang] }</p>
+          <img src={imageURL} style={{ width: '300px'}} />
+          <p>{ currentItem.content }</p>
         </div>
         <div className="card-action">
           <a href="#" onClick={changeItem}>Next</a>
