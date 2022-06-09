@@ -13,55 +13,24 @@ function Card() {
   const [currentTag, setCurrentTag] = useState('')
   const [imageURL, setImageURL] = useState('')
 
-  const getUserslist = () => {
-    fetch(`https://dummyapi.io/data/v1/user?limit=10`, {
-      headers: {
-        "app-id": "629c6413720007a945062d5e"
-      }
-     })
-  .then((res) => {
-    return res.json();
-  })
-  .then((data) => {
-    console.log(data);
-    // const imageURL = data.results[0].urls.regular
-    // console.log(imageURL)
-    // setImageURL(data.results[0].urls.regular)
-    // const imageURL = data.results[0].urls.regular
-    console.log(imageURL)
-    setImageURL(data.data[1].picture)
-  });
-  }
-
-  const getUserProfile = (id) => {
-    fetch(`https://dummyapi.io/data/v1/user/${id}`, {
-      headers: {
-        "app-id": "629c6413720007a945062d5e"
-      }
-     })
-  .then((res) => {
-    return res.json();
-  })
-  .then((data) => {
-    console.log(data);
-    // const imageURL = data.results[0].urls.regular
-    // console.log(imageURL)
-    // setImageURL(data.results[0].urls.regular)
-    // const imageURL = data.results[0].urls.regular
-    console.log(imageURL)
-    setImageURL(data.data[1].picture)
-  });
-  }
-
   useEffect(() => {
-    fetch('')
+    const getPicture = (query) => {
+      fetch(
+        `https://api.unsplash.com/search/photos?page=1&query=${query}&client_id=kM9jNzrqeEYtTdNfikpbmyB9LSRT0rNji43OuHSmzmc&per_page=20`
+      )
     .then((res) => {
       return res.json();
     })
     .then((data) => {
-      setImageURL(data.data[1].picture)
-    })
-  }, [currentLang, currentItemIndex, currentTag])
+      console.log(data);
+      // console.log(imageURL)
+      setImageURL(data.results[0].urls.regular);
+    });
+    }
+  
+    const query = filteredItemsByTag(currentTag)[currentItemIndex].imageTopic
+    getPicture(query)
+  }, [currentItemIndex, currentTag])
 
   const changeItem = () => {
     const newItemsIndex = generateRandomIndex(filteredItemsByTag(currentTag).length)
@@ -106,7 +75,7 @@ function Card() {
       <div className="card pink lighten-1">
         <div className="card-content white-text">
           <img src={imageURL} style={{ width: '300px'}} />
-          <p>{ currentItem.content }</p>
+          <p>{ currentItem }</p>
         </div>
         <div className="card-action">
           <a href="#" onClick={changeItem}>Next</a>
