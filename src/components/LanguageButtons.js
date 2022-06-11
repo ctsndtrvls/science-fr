@@ -5,15 +5,6 @@ function LanguageButtons(props) {
         <div className="container-lang">
             <a 
                 className="waves-effect waves-light purple lighten-3 btn-small" 
-                onClick={() => props.changeLang('ru')}
-                style={{
-                    fontWeight: props.currentLang == 'ru' ? 'bold' : ''
-                }}
-            >
-                ru
-            </a>
-            <a 
-                className="waves-effect waves-light purple lighten-3 btn-small" 
                 onClick={() => props.changeLang('en')}
                 style={{
                     fontWeight: props.currentLang == 'en' ? 'bold' : ''
@@ -21,14 +12,17 @@ function LanguageButtons(props) {
             >
                 en
             </a>
+            <a 
+                className="waves-effect waves-light purple lighten-3 btn-small" 
+                onClick={() => props.changeLang('de')}
+                style={{
+                    fontWeight: props.currentLang == 'de' ? 'bold' : ''
+                }}
+            >
+                de
+            </a>
         </div> 
     )      
 }
 
 export default LanguageButtons;
-
-const person = {
-    name: 'foo'
-}
-
-const isFoo = person.name === "foo" ? true : false

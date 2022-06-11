@@ -9,7 +9,7 @@ const generateRandomIndex = (itemsLength) => {
 
 function Card() {
   const [currentItemIndex, setcurrentItemIndex] = useState(0) 
-  const [currentLang, setCurrentLang] = useState(window.localStorage.lang || 'ru')
+  const [currentLang, setCurrentLang] = useState(window.localStorage.lang || 'en')
   const [currentTag, setCurrentTag] = useState('')
   const [imageURL, setImageURL] = useState('')
 
@@ -23,7 +23,6 @@ function Card() {
     })
     .then((data) => {
       console.log(data);
-      // console.log(imageURL)
       setImageURL(data.results[0].urls.regular);
     });
     }
@@ -67,7 +66,6 @@ function Card() {
 
     return (
       <div>
-      {currentTag}
       <LanguageButtons changeLang={changeLang} currentLang={currentLang} />
         <div className="container-card"> 
      <div className="row">
