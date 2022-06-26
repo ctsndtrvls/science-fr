@@ -1,34 +1,52 @@
 import React from "react";
 
     function Tags (props) {
-        return (<div class="container-tags">
-            <a 
-                className="waves-effect waves-light btn cyan lighten-1"
-                onClick={() => props.changeTag('biology')}   
-            >
-                <i class="material-icons left">image</i>biology
-            </a>
-            <a 
-                className="waves-effect waves-light btn cyan lighten-1"
-                onClick={() => props.changeTag('chemistry')}   
-            >
-                <i class="material-icons right">cloud</i>chemistry</a>
-            <a 
-                className="waves-effect waves-light btn cyan lighten-1"
-                onClick={() => props.changeTag('physics')}   
-            >
-                <i class="material-icons right">iso</i>physics</a>   
-            <a 
-                className="waves-effect waves-light btn cyan lighten-1"
-                onClick={() => props.changeTag('history')}   
-            >
-            <i class="material-icons right">tag_faces</i>history</a>             
-            <a 
-                className="waves-effect waves-light btn cyan lighten-1"
-                onClick={() => props.changeTag('geography')}   
+        const tags = ['biology', 'chemistry', 'physics', 'history', 'geography']
+
+        const Tag = ({ tag }) => {
+            const isCurrent = props.currentTag === tag
+            return (
+                <button
+                    onClick={() => props.changeTag(tag)}
+                    style={{ 
+                        backgroundColor: isCurrent ? "#EA596E" : ""
+                    }}
                 >
-            <i class="material-icons right">filter_hdr</i>geography</a>         
-                </div>);
+                    {tag}
+                    { 
+                        isCurrent &&
+                        <svg 
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                props.changeTag('')
+                            }} 
+                            width="25" 
+                            height="25" 
+                            viewBox="0 0 25 25" 
+                            fill="none" 
+                            xmlns="http://www.w3.org/2000/svg"
+                            style={{
+                                marginLeft: "10px"
+                            }}
+                        >
+                            <path d="M20.487 3.51401C19.3737 2.39824 18.0509 1.51343 16.5946 0.910389C15.1383 0.307349 13.5772 -0.00203436 12.001 1.00664e-05C5.373 1.00664e-05 0 5.37301 0 12.001C0 15.315 1.344 18.316 3.516 20.488C4.62933 21.6038 5.95213 22.4886 7.40842 23.0916C8.86471 23.6947 10.4258 24.0041 12.002 24.002C18.63 24.002 24.003 18.629 24.003 12.001C24.003 8.68701 22.659 5.68601 20.487 3.51401ZM18.945 18.941C18.0342 19.8541 16.952 20.5783 15.7605 21.0718C14.569 21.5654 13.2917 21.8186 12.002 21.817C6.579 21.817 2.183 17.421 2.183 11.998C2.18138 10.7083 2.43463 9.43103 2.92819 8.23953C3.42175 7.04802 4.14589 5.96579 5.059 5.05501C5.96956 4.14188 7.05161 3.41772 8.24296 2.92416C9.43431 2.4306 10.7115 2.17736 12.001 2.17901C17.423 2.17901 21.819 6.57501 21.819 11.997C21.8207 13.2866 21.5675 14.5637 21.0739 15.7551C20.5804 16.9464 19.8562 18.0285 18.943 18.939L18.945 18.941Z" fill="white"/>
+                            <path d="M13.5441 12.002L17.3991 8.14701C17.5893 7.93973 17.692 7.66702 17.686 7.3858C17.6799 7.10458 17.5654 6.83659 17.3664 6.63775C17.1674 6.43892 16.8994 6.32461 16.6181 6.3187C16.3369 6.31278 16.0643 6.41571 15.8571 6.60601L15.8581 6.60501L12.0031 10.46L8.14813 6.60501C7.94086 6.41485 7.66815 6.31209 7.38693 6.31819C7.10571 6.32429 6.83771 6.43877 6.63888 6.63773C6.44004 6.83669 6.32574 7.10477 6.31982 7.38599C6.31391 7.66722 6.41684 7.93986 6.60713 8.14701L6.60613 8.14601L10.4611 12.001L6.60613 15.856C6.49767 15.9555 6.41047 16.0759 6.34977 16.21C6.28907 16.3441 6.25613 16.4891 6.25294 16.6363C6.24975 16.7834 6.27637 16.9297 6.3312 17.0663C6.38603 17.2029 6.46793 17.327 6.57198 17.4311C6.67603 17.5353 6.80007 17.6172 6.93664 17.6722C7.0732 17.7271 7.21947 17.7538 7.36663 17.7507C7.51379 17.7476 7.6588 17.7148 7.79294 17.6541C7.92707 17.5935 8.04756 17.5064 8.14713 17.398L8.14813 17.397L12.0031 13.542L15.8581 17.397C15.9576 17.5055 16.0781 17.5927 16.2122 17.6534C16.3463 17.7141 16.4913 17.747 16.6384 17.7502C16.7856 17.7534 16.9319 17.7268 17.0685 17.6719C17.2051 17.6171 17.3291 17.5352 17.4333 17.4312C17.5374 17.3271 17.6194 17.2031 17.6743 17.0665C17.7292 16.9299 17.7559 16.7837 17.7528 16.6365C17.7497 16.4894 17.7169 16.3443 17.6563 16.2102C17.5957 16.0761 17.5085 15.9556 17.4001 15.856L17.3991 15.855L13.5441 12.002Z" fill="white"/>
+                        </svg>
+                    }
+                </button>
+            ) 
+        }
+
+        return (
+            <div className="containter-tags">
+                <p>Filter fragments:</p>
+                <div className="block-tags">
+                    { tags.map(tag => 
+                        <Tag tag={tag} key={tag} />
+                    )}
+                </div>
+            </div> 
+        );
     }
 
 export default Tags;

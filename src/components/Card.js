@@ -15,6 +15,7 @@ function Card() {
 
   useEffect(() => {
     const getPicture = (query) => {
+      console.log(query)
       fetch(
         `https://api.unsplash.com/search/photos?page=1&query=${query}&client_id=kM9jNzrqeEYtTdNfikpbmyB9LSRT0rNji43OuHSmzmc&per_page=20`
       )
@@ -66,31 +67,30 @@ function Card() {
 
     return (
       <div>
-      <LanguageButtons changeLang={changeLang} currentLang={currentLang} />
-        <div className="container-card"> 
-     <div className="row">
-    <div className="col s12 m6">
-      <div className="card pink lighten-1">
-        <div className="card-content white-text">
-          <img src={imageURL} style={{ width: '300px'}} />
-          <p>{ currentItem }</p>
+        <LanguageButtons changeLang={changeLang} currentLang={currentLang} />
+        <div className="card-container"> 
+          <div className="card-title">
+            <div>
+              <img src={"./img/icon.svg"} alt="icon" />
+            </div>
+            <div className="card-right">
+              <h1>Science fragments</h1>
+              <h2 id="first-title">This is a place where I collect all the new science stuff I learn </h2>
+            </div> 
+          </div>
+          <h2 id="second-title">This is a place where I collect all the new science stuff I learn </h2> 
+          <div className="card">
+            <img src={imageURL} />
+            <div className="card-content">{ currentItem }</div>
+          </div>
+          <button className="next-btn" href="#" onClick={changeItem}>Next fragment {'>'}</button>
+          <Tags changeTag={changeTag} currentTag={currentTag}/>
         </div>
-        <div className="card-action">
-          <a href="#" onClick={changeItem}>Next</a>
-        </div>
-      </div>
-    </div>
-  </div>
-      </div>
-       <Tags changeTag={changeTag} />
-        <div class="container-reset">
-        <button class="btn waves-effect waves-light" type="submit" name="action" onClick={() => changeTag('')}>Reset tags
-          <i class="material-icons right">send</i> 
-      </button>
-
-       </div>
       </div>
     );
 }
 
 export default Card;
+
+// https://api.unsplash.com/search/photos?page=1&query=dna&client_id=kM9jNzrqeEYtTdNfikpbmyB9LSRT0rNji43OuHSmzmc&per_page=20
+// https://api.unsplash.com/search/photos?page=1&query=dna&client_id=kM9jNzrqeEYtTdNfikpbmyB9LSRT0rNji43OuHSmzmc&per_page=20

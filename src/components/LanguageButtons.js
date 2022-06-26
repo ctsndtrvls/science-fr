@@ -3,24 +3,26 @@ import React from 'react'
 function LanguageButtons(props) {
     return (
         <div className="container-lang">
-            <a 
-                className="waves-effect waves-light purple lighten-3 btn-small" 
+            <button     
                 onClick={() => props.changeLang('en')}
                 style={{
-                    fontWeight: props.currentLang == 'en' ? 'bold' : ''
+                    fontWeight: props.currentLang == 'en' ? 'bold' : '',
+                    backgroundColor: props.currentLang == 'en' ? '#EA596E' : '',
+                    color: props.currentLang == 'en' ? '#FFF' : '#818181'
                 }}
             >
-                en
-            </a>
-            <a 
-                className="waves-effect waves-light purple lighten-3 btn-small" 
+                En
+            </button>
+            <button
                 onClick={() => props.changeLang('de')}
                 style={{
-                    fontWeight: props.currentLang == 'de' ? 'bold' : ''
+                    fontWeight: props.currentLang == 'de' ? 'bold' : '',
+                    backgroundColor: props.currentLang == 'de' ? '#EA596E' : '',
+                    color: props.currentLang == 'de' ? '#FFF' : '#818181'
                 }}
             >
-                de
-            </a>
+                De
+            </button>
         </div> 
     )      
 }
